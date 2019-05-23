@@ -1,8 +1,10 @@
 import * as React from 'react';
 import "../styles/home.less";
 
-interface IGridProps {
+// @ts-ignore
+var Logo = require("../images/logo.png");
 
+interface IGridProps {
 }
 
 interface IGridState {
@@ -22,7 +24,7 @@ export class Home extends React.Component<IGridProps, IGridState> {
 
   componentDidMount() {
     this.handleCellInit();
-  }
+  }    
 
   handleCellClick(e: any) {
     var cellId = document.getElementById(e.target.id);
@@ -99,7 +101,7 @@ export class Home extends React.Component<IGridProps, IGridState> {
     return (
       <div className="home-container">
           <header>
-              Gridster
+              <img src={Logo} alt="Gridster logo"/>
           </header>
           <main>
               <div className="controls-container">
@@ -128,7 +130,7 @@ export class Home extends React.Component<IGridProps, IGridState> {
               <div className="grid-container" style={styles.columns}>
                   {
                       gridArray.map((x,i) => (
-                        <div className="column" id={`column-${i}`} style={styles.rows}>
+                        <div className="column" key={i} id={`column-${i}`} style={styles.rows}>
                           {
                             x.map((y,j) => 
                               this.renderCell(y,i+""+j)

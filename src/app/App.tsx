@@ -3,7 +3,20 @@ import * as ReactDOM from 'react-dom';
 import { Home } from './components/Home';
 declare let module: any
 
-ReactDOM.render(<Home />,
+class App extends React.Component<{},{}> {
+  constructor(props: any) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        <Home />
+      </div>
+    );
+  }
+};
+
+ReactDOM.render(<App />,
 document.getElementById('root'));
 
 if (module.hot) {
