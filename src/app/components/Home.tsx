@@ -20,6 +20,10 @@ export class Home extends React.Component<IGridProps, IGridState> {
     }
   }
 
+  componentDidMount() {
+    this.handleCellInit();
+  }
+
   handleCellClick(e: any) {
     var cellId = document.getElementById(e.target.id);
     cellId.classList.contains("selected") ? cellId.classList.remove("selected") : cellId.classList.add("selected");
@@ -47,6 +51,19 @@ export class Home extends React.Component<IGridProps, IGridState> {
     })
   }
 
+  getRandomNum(max: number) {
+    return Math.floor(Math.random() * Math.floor(max));
+  }
+
+  handleCellInit() {
+    var colLength = this.state.columns;
+    var rowLength = this.state.rows;
+    var randomFirst = this.getRandomNum(rowLength);
+    var randomLast = this.getRandomNum(rowLength);
+    document.getElementById(`cell-0${randomFirst}`).classList.add("start");
+    document.getElementById(`cell-${colLength-1}${randomLast}`).classList.add("end");
+  }
+
   renderCell(cellContent: string, index: any) {
     return (
       <div 
@@ -63,14 +80,14 @@ export class Home extends React.Component<IGridProps, IGridState> {
     var gridArray = [];
     var rows = this.state.rows;
     var columns = this.state.columns;
-    for(var i = 0; i<rows; i++) {
+    for(var i = 0; i<columns; i++) {
       gridArray.push([]);
-      for(var j =0; j<columns; j++) {
+      for(var j =0; j<rows; j++) {
         gridArray[i].push("");
       }
     }
 
-    var styles= {
+    var styles = {
       rows: {
         gridTemplateRows: `repeat(${this.state.rows}, 1fr)`
       },
@@ -108,10 +125,10 @@ export class Home extends React.Component<IGridProps, IGridState> {
                   <button 
                     className="generate-btn">Generate</button>
               </div>
-              <div className="grid-container" style={styles.rows}>
+              <div className="grid-container" style={styles.columns}>
                   {
                       gridArray.map((x,i) => (
-                        <div className="row" id={`row-${i}`} style={styles.columns}>
+                        <div className="column" id={`column-${i}`} style={styles.rows}>
                           {
                             x.map((y,j) => 
                               this.renderCell(y,i+""+j)

@@ -59,7 +59,7 @@
     width: 100%;
     margin: 1em 0;
 
-    .row {
+    .column {
       display: grid;
 
       .cell {
@@ -78,6 +78,16 @@
   
         &.selected {
           background-color: @cell-clear;
+        }
+
+        &.start {
+          background-color: @cell-start!important;
+          user-select: none;
+        }
+
+        &.end {
+          background-color: @cell-end!important;
+          user-select: none;
         }
       }
     }
