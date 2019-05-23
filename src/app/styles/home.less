@@ -59,22 +59,26 @@
     width: 100%;
     margin: 1em 0;
 
-    .cell {
-      background-color: @cell-default;
-      border: 1px solid @cell-border;
-      width: 100%;
-      height: 100%;
+    .row {
+      display: grid;
 
-      &:hover {
-        background-color: @cell-hover;
-      }
-
-      &:active {
-        background-color: @cell-active;
-      }
-
-      &.selected {
-        background-color: @cell-clear;
+      .cell {
+        background-color: @cell-default;
+        border: 1px solid @cell-border;
+        width: 100%;
+        height: 100%;
+  
+        &:hover {
+          background-color: @cell-hover;
+        }
+  
+        &:active {
+          background-color: @cell-active;
+        }
+  
+        &.selected {
+          background-color: @cell-clear;
+        }
       }
     }
   }

@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "ff81561faeddbfbd1229";
+/******/ 	var hotCurrentHash = "75ebc4ca37ff3adb9618";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -1006,7 +1006,7 @@ module.exports = function () {
 
 exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".home-container {\n  background-color: gray;\n}\n", ""]);
+exports.push([module.i, ".home-container {\n  width: 50%;\n  margin: 0 auto;\n  padding: 1em;\n}\n.home-container .controls-container {\n  background-color: #F1F1F1;\n  padding: 0.5em 1em;\n  display: flex;\n  align-items: flex-end;\n  border-radius: 0.2em;\n}\n.home-container .controls-container span {\n  margin-right: 1em;\n}\n.home-container .controls-container .input-container label {\n  display: block;\n  font-size: 0.75em;\n  margin-bottom: 0.25em;\n  color: #757575;\n  font-family: Arial, Helvetica, sans-serif;\n}\n.home-container .controls-container .input-container input {\n  width: 2em;\n  padding: 0.5em 1em;\n  border: none;\n  border-radius: 0.2em;\n}\n.home-container .controls-container .generate-btn {\n  height: fit-content;\n  padding: 0.5em 1em;\n  color: #fff;\n  background-color: #4A90E2;\n  transition: 0.5s;\n  border: none;\n  border-radius: 0.2em;\n}\n.home-container .controls-container .generate-btn:hover {\n  background-color: #76B5FF;\n}\n.home-container .controls-container .generate-btn:active {\n  background-color: #235896;\n}\n.home-container .grid-container {\n  display: grid;\n  min-height: 75vh;\n  width: 100%;\n  margin: 1em 0;\n}\n.home-container .grid-container .cell {\n  background-color: #F1F1F1;\n  border: 1px solid #DBDBDB;\n  width: 100%;\n  height: 100%;\n}\n.home-container .grid-container .cell:hover {\n  background-color: #F8F8F8;\n}\n.home-container .grid-container .cell:active {\n  background-color: #E2E2E2;\n}\n.home-container .grid-container .cell.selected {\n  background-color: #FFFFFF;\n}\n@media (max-width: 800px) {\n  .home-container {\n    width: 75%;\n  }\n}\n@media (max-width: 400px) {\n  .home-container {\n    width: 90%;\n  }\n}\n", ""]);
 
 
 
@@ -27529,8 +27529,8 @@ module.exports = function(module) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 var ReactDOM = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-var Hello_1 = __webpack_require__(/*! ./components/Hello */ "./src/app/components/Hello.tsx");
-ReactDOM.render(React.createElement(Hello_1.Hello, null), document.getElementById('root'));
+var Home_1 = __webpack_require__(/*! ./components/Home */ "./src/app/components/Home.tsx");
+ReactDOM.render(React.createElement(Home_1.Home, null), document.getElementById('root'));
 if (true) {
     module.hot.accept();
 }
@@ -27538,10 +27538,10 @@ if (true) {
 
 /***/ }),
 
-/***/ "./src/app/components/Hello.tsx":
-/*!**************************************!*\
-  !*** ./src/app/components/Hello.tsx ***!
-  \**************************************/
+/***/ "./src/app/components/Home.tsx":
+/*!*************************************!*\
+  !*** ./src/app/components/Home.tsx ***!
+  \*************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -27563,18 +27563,71 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 __webpack_require__(/*! ../styles/home.less */ "./src/app/styles/home.less");
-var Hello = (function (_super) {
-    __extends(Hello, _super);
-    function Hello() {
-        return _super !== null && _super.apply(this, arguments) || this;
+var Home = (function (_super) {
+    __extends(Home, _super);
+    function Home(props) {
+        var _this = _super.call(this, props) || this;
+        _this.state = {
+            rows: 10,
+            columns: 10
+        };
+        return _this;
     }
-    Hello.prototype.render = function () {
-        return (React.createElement("div", { className: "home-container" },
-            React.createElement("header", null, "Gridster")));
+    Home.prototype.handleCellClick = function (e) {
+        var cellId = document.getElementById(e.target.id);
+        cellId.classList.contains("selected") ? cellId.classList.remove("selected") : cellId.classList.add("selected");
     };
-    return Hello;
+    Home.prototype.handleColumnChange = function (e) {
+        if (e.which < 48 || e.which > 57) {
+            e.preventDefault();
+        }
+        var columns = e.target.value;
+        this.setState({
+            columns: columns
+        });
+    };
+    Home.prototype.handleRowChange = function (e) {
+        if (e.which < 48 || e.which > 57) {
+            e.preventDefault();
+        }
+        var rows = e.target.value;
+        this.setState({
+            rows: rows
+        });
+    };
+    Home.prototype.renderCell = function (cellContent, index) {
+        var _this = this;
+        return (React.createElement("div", { className: "cell", key: index, id: "cell-" + index, onClick: function (e) { return _this.handleCellClick(e); } }, cellContent));
+    };
+    Home.prototype.render = function () {
+        var _this = this;
+        var gridArray = [];
+        var area = this.state.rows * this.state.columns;
+        for (var i = 0; i < area; i++) {
+            gridArray.push("");
+        }
+        var styles = {
+            gridTemplateColumns: "repeat(" + this.state.columns + ", 1fr)",
+            gridTemplateRows: "repeat(" + this.state.rows + ", 1fr)"
+        };
+        return (React.createElement("div", { className: "home-container" },
+            React.createElement("header", null, "Gridster"),
+            React.createElement("main", null,
+                React.createElement("div", { className: "controls-container" },
+                    React.createElement("span", { className: "input-container" },
+                        React.createElement("label", null, "Rows"),
+                        React.createElement("input", { value: this.state.rows, maxLength: 2, onChange: function (e) { return _this.handleRowChange(e); }, id: "rows-input" })),
+                    React.createElement("span", { className: "input-container" },
+                        React.createElement("label", null, "x")),
+                    React.createElement("span", { className: "input-container" },
+                        React.createElement("label", null, "Columns"),
+                        React.createElement("input", { value: this.state.columns, maxLength: 2, onChange: function (e) { return _this.handleColumnChange(e); }, id: "columns-input" })),
+                    React.createElement("button", { className: "generate-btn" }, "Generate")),
+                React.createElement("div", { className: "grid-container", style: styles }, gridArray.map(function (x, i) { return (_this.renderCell(x, i)); })))));
+    };
+    return Home;
 }(React.Component));
-exports.Hello = Hello;
+exports.Home = Home;
 
 
 /***/ }),

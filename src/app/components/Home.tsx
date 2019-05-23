@@ -47,7 +47,7 @@ export class Home extends React.Component<IGridProps, IGridState> {
     })
   }
 
-  renderCell(cellContent: string, index: number) {
+  renderCell(cellContent: string, index: any) {
     return (
       <div 
         className="cell" 
@@ -61,14 +61,22 @@ export class Home extends React.Component<IGridProps, IGridState> {
   
   render() {
     var gridArray = [];
-    var area = this.state.rows * this.state.columns;
-    for(var i = 0; i < area; i++) {
-      gridArray.push("");
+    var rows = this.state.rows;
+    var columns = this.state.columns;
+    for(var i = 0; i<rows; i++) {
+      gridArray.push([]);
+      for(var j =0; j<columns; j++) {
+        gridArray[i].push("");
+      }
     }
 
     var styles= {
-      gridTemplateColumns: `repeat(${this.state.columns}, 1fr)`,
-      gridTemplateRows: `repeat(${this.state.rows}, 1fr)`
+      rows: {
+        gridTemplateRows: `repeat(${this.state.rows}, 1fr)`
+      },
+      columns: {
+        gridTemplateColumns: `repeat(${this.state.columns}, 1fr)`
+      }
     }
 
     return (
@@ -100,10 +108,16 @@ export class Home extends React.Component<IGridProps, IGridState> {
                   <button 
                     className="generate-btn">Generate</button>
               </div>
-              <div className="grid-container" style={styles}>
+              <div className="grid-container" style={styles.rows}>
                   {
                       gridArray.map((x,i) => (
-                        this.renderCell(x,i)
+                        <div className="row" id={`row-${i}`} style={styles.columns}>
+                          {
+                            x.map((y,j) => 
+                              this.renderCell(y,i+""+j)
+                            )
+                          }
+                        </div>
                       ))
                   }
               </div>
