@@ -1,5 +1,6 @@
 import * as React from 'react';
 import "../styles/home.less";
+import * as $ from "jquery";
 
 // @ts-ignore
 var Logo = require("../images/logo.png");
@@ -8,8 +9,10 @@ interface IGridProps {
 }
 
 interface IGridState {
+  rowInput: number;
+  columnInput: number;
   rows: number;
-  columns: number;
+  columns: number
 }
 
 export class Home extends React.Component<IGridProps, IGridState> {
@@ -18,7 +21,9 @@ export class Home extends React.Component<IGridProps, IGridState> {
 
     this.state = {
       rows: 10,
-      columns: 10
+      columns: 10,
+      rowInput: 10,
+      columnInput: 10
     }
   }
 
@@ -32,25 +37,28 @@ export class Home extends React.Component<IGridProps, IGridState> {
   }
 
   handleColumnChange(e:any) {
-    if (e.which < 48 || e.which > 57)
-    {
-        e.preventDefault();
-    }
-    var columns = e.target.value;
+    var columnInput = e.target.value;
     this.setState({
-      columns
+      columnInput
     })
   }
 
   handleRowChange(e:any) {
-    if (e.which < 48 || e.which > 57)
-    {
-        e.preventDefault();
-    }
-    var rows = e.target.value;
+    var rowInput = e.target.value;
     this.setState({
-      rows
+      rowInput
     })
+  }
+
+  handleGenerateGrid() {
+    var rows = this.state.rowInput;
+    var columns = this.state.columnInput;
+    this.setState({
+      rows,
+      columns
+    });
+    this.resetTable();
+    this.handleCellInit();
   }
 
   getRandomNum(max: number) {
@@ -58,12 +66,16 @@ export class Home extends React.Component<IGridProps, IGridState> {
   }
 
   handleCellInit() {
-    var colLength = this.state.columns;
-    var rowLength = this.state.rows;
+    var colLength = this.state.columnInput;
+    var rowLength = this.state.rowInput;
     var randomFirst = this.getRandomNum(rowLength);
     var randomLast = this.getRandomNum(rowLength);
-    document.getElementById(`cell-0${randomFirst}`).classList.add("start");
-    document.getElementById(`cell-${colLength-1}${randomLast}`).classList.add("end");
+    $(`#cell-0${randomFirst}`).addClass("start");
+    $(`#cell-${colLength-1}${randomLast}`).addClass("end");
+  }
+
+  resetTable() {
+    $(".cell").removeClass("start end selected");
   }
 
   renderCell(cellContent: string, index: any) {
@@ -108,7 +120,7 @@ export class Home extends React.Component<IGridProps, IGridState> {
                   <span className="input-container">
                       <label>Rows</label>
                       <input 
-                        value={this.state.rows}
+                        value={this.state.rowInput}
                         maxLength={2}
                         onChange={(e) => this.handleRowChange(e)}
                         id="rows-input"/>
@@ -119,13 +131,14 @@ export class Home extends React.Component<IGridProps, IGridState> {
                   <span className="input-container">
                       <label>Columns</label>
                       <input 
-                        value={this.state.columns}
+                        value={this.state.columnInput}
                         maxLength={2}
                         onChange={(e) => this.handleColumnChange(e)}
                         id="columns-input"/>
                   </span>
                   <button 
-                    className="generate-btn">Generate</button>
+                    className="generate-btn"
+                    onClick={() => this.handleGenerateGrid()}>Generate</button>
               </div>
               <div className="grid-container" style={styles.columns}>
                   {
