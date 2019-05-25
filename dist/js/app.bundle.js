@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "5eee0309df158c07a030";
+/******/ 	var hotCurrentHash = "632b0d08873b24744c73";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -38220,18 +38220,12 @@ var Home = (function (_super) {
         cellId.classList.contains("selected") ? cellId.classList.remove("selected") : cellId.classList.add("selected");
     };
     Home.prototype.handleColumnChange = function (e) {
-        if (e.which < 48 || e.which > 57) {
-            e.preventDefault();
-        }
         var columnInput = e.target.value;
         this.setState({
             columnInput: columnInput
         });
     };
     Home.prototype.handleRowChange = function (e) {
-        if (e.target.value > 20 || isNaN(e.target.value)) {
-            e.preventDefault();
-        }
         var rowInput = e.target.value;
         this.setState({
             rowInput: rowInput
@@ -38255,11 +38249,11 @@ var Home = (function (_super) {
         var rowLength = this.state.rowInput;
         var randomFirst = this.getRandomNum(rowLength);
         var randomLast = this.getRandomNum(rowLength);
-        document.getElementById("cell-0" + randomFirst).classList.add("start");
-        document.getElementById("cell-" + (colLength - 1) + randomLast).classList.add("end");
+        $("#cell-0" + randomFirst).addClass("start");
+        $("#cell-" + (colLength - 1) + randomLast).addClass("end");
     };
     Home.prototype.resetTable = function () {
-        $("cell").remove("start end selected");
+        $(".cell").removeClass("start end selected");
     };
     Home.prototype.renderCell = function (cellContent, index) {
         var _this = this;

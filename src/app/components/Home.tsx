@@ -5,31 +5,35 @@ import * as $ from "jquery";
 // @ts-ignore
 var Logo = require("../images/logo.png");
 
-interface IGridProps {
-}
-
 interface IGridState {
-  rowInput: number;
-  columnInput: number;
   rows: number;
   columns: number
 }
 
-export class Home extends React.Component<IGridProps, IGridState> {
-  constructor(props: IGridProps) {
+export class Home extends React.Component<{}, IGridState> {
+  private rowInput: React.RefObject<HTMLInputElement>;
+  private colInput: React.RefObject<HTMLInputElement>;
+
+  constructor(props: any) {
     super(props);
+
+    this.rowInput = React.createRef();
+    this.colInput = React.createRef();
 
     this.state = {
       rows: 10,
-      columns: 10,
-      rowInput: 10,
-      columnInput: 10
+      columns: 10
     }
   }
 
   componentDidMount() {
     this.handleCellInit();
-  }    
+  } 
+  
+  componentDidUpdate() {
+    this.resetTable();
+    this.handleCellInit();
+  }
 
   handleCellClick(e: any) {
     var cellId = document.getElementById(e.target.id);
@@ -37,28 +41,22 @@ export class Home extends React.Component<IGridProps, IGridState> {
   }
 
   handleColumnChange(e:any) {
-    var columnInput = e.target.value;
-    this.setState({
-      columnInput
-    })
+    var colInput = e.target.value;
+    this.colInput = colInput;
   }
 
   handleRowChange(e:any) {
     var rowInput = e.target.value;
-    this.setState({
-      rowInput
-    })
+    this.rowInput = rowInput;
   }
 
   handleGenerateGrid() {
-    var rows = this.state.rowInput;
-    var columns = this.state.columnInput;
+    var rows = +this.rowInput;
+    var columns = +this.colInput;
     this.setState({
       rows,
       columns
     });
-    this.resetTable();
-    this.handleCellInit();
   }
 
   getRandomNum(max: number) {
@@ -66,8 +64,8 @@ export class Home extends React.Component<IGridProps, IGridState> {
   }
 
   handleCellInit() {
-    var colLength = this.state.columnInput;
-    var rowLength = this.state.rowInput;
+    var colLength = this.state.columns;
+    var rowLength = this.state.rows;
     var randomFirst = this.getRandomNum(rowLength);
     var randomLast = this.getRandomNum(rowLength);
     $(`#cell-0${randomFirst}`).addClass("start");
@@ -92,11 +90,9 @@ export class Home extends React.Component<IGridProps, IGridState> {
   
   render() {
     var gridArray = [];
-    var rows = this.state.rows;
-    var columns = this.state.columns;
-    for(var i = 0; i<columns; i++) {
+    for(var i = 0; i < this.state.columns; i++) {
       gridArray.push([]);
-      for(var j =0; j<rows; j++) {
+      for(var j =0; j < this.state.rows; j++) {
         gridArray[i].push("");
       }
     }
@@ -112,49 +108,51 @@ export class Home extends React.Component<IGridProps, IGridState> {
 
     return (
       <div className="home-container">
-          <header>
-              <img src={Logo} alt="Gridster logo"/>
-          </header>
-          <main>
-              <div className="controls-container">
-                  <span className="input-container">
-                      <label>Rows</label>
-                      <input 
-                        value={this.state.rowInput}
-                        maxLength={2}
-                        onChange={(e) => this.handleRowChange(e)}
-                        id="rows-input"/>
-                  </span>
-                  <span className="input-container">
-                  <label>x</label>
-                  </span>
-                  <span className="input-container">
-                      <label>Columns</label>
-                      <input 
-                        value={this.state.columnInput}
-                        maxLength={2}
-                        onChange={(e) => this.handleColumnChange(e)}
-                        id="columns-input"/>
-                  </span>
-                  <button 
-                    className="generate-btn"
-                    onClick={() => this.handleGenerateGrid()}>Generate</button>
-              </div>
-              <div className="grid-container" style={styles.columns}>
-                  {
-                      gridArray.map((x,i) => (
-                        <div className="column" key={i} id={`column-${i}`} style={styles.rows}>
-                          {
-                            x.map((y,j) => 
-                              this.renderCell(y,i+""+j)
-                            )
-                          }
-                        </div>
-                      ))
-                  }
-              </div>
-          </main>
+        <header>
+          <img src={Logo} alt="Gridster logo"/>
+        </header>
+        <main>
+          <div className="controls-container">
+              <span className="input-container">
+                <label>Rows</label>
+                <input 
+                  ref = {this.rowInput}
+                  maxLength={2}
+                  onChange={(e) => this.handleRowChange(e)}
+                  id="rows-input"/>
+              </span>
+              <span className="input-container">
+                <label>x</label>
+              </span>
+              <span className="input-container">
+                <label>Columns</label>
+                <input 
+                  ref = {this.colInput}
+                  maxLength={2}
+                  onChange={(e) => this.handleColumnChange(e)}
+                  id="columns-input"/>
+              </span>
+              <button 
+                className="generate-btn"
+                onClick={() => this.handleGenerateGrid()}>
+                  Generate
+              </button>
+          </div>
+          <div className="grid-container" style={styles.columns}>
+              {
+                gridArray.map((x,i) => (
+                  <div className="column" key={i} id={`column-${i}`} style={styles.rows}>
+                    {
+                      x.map((y,j) => 
+                        this.renderCell(y,i+""+j)
+                      )
+                    }
+                  </div>
+                ))
+              }
+          </div>
+        </main>
       </div>
-  )
+    )
   }
 }
