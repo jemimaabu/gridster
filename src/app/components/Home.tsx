@@ -112,7 +112,6 @@ export class Home extends React.Component<{}, IGridState> {
         gridArray[validPath[path][0]][validPath[path][1]] = "path";
       }
       gridArray[validPath[0][0]][validPath[0][1]] = "start";
-      this.handleCellClick = function(){return};
     }
   }
 
