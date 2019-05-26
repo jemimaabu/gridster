@@ -1,3 +1,5 @@
+//Algorithm from: http://gregtrowbridge.com/a-basic-pathfinding-algorithm/
+
 // start location will be in the following format:
 // [distanceFromTop, distanceFromLeft]
 export const findShortestPath = function(startCoordinates: any, grid: any) {
@@ -20,11 +22,12 @@ export const findShortestPath = function(startCoordinates: any, grid: any) {
   while (queue.length > 0) {
     // Take the first location off the queue
     var currentLocation = queue.shift();
+    
     // Explore North
     var newLocation = exploreInDirection(currentLocation, "North", grid);
     if (newLocation.status === "end") {
       return newLocation.path;
-    } else if (newLocation.status === "Valid") {
+    } else if (newLocation.status === "valid") {
       queue.push(newLocation);
     }
 
@@ -32,7 +35,7 @@ export const findShortestPath = function(startCoordinates: any, grid: any) {
     var newLocation = exploreInDirection(currentLocation, "East", grid);
     if (newLocation.status === "end") {
       return newLocation.path;
-    } else if (newLocation.status === "Valid") {
+    } else if (newLocation.status === "valid") {
       queue.push(newLocation);
     }
 
@@ -40,7 +43,7 @@ export const findShortestPath = function(startCoordinates: any, grid: any) {
     var newLocation = exploreInDirection(currentLocation, "South", grid);
     if (newLocation.status === "end") {
       return newLocation.path;
-    } else if (newLocation.status === "Valid") {
+    } else if (newLocation.status === "valid") {
       queue.push(newLocation);
     }
 
@@ -48,10 +51,11 @@ export const findShortestPath = function(startCoordinates: any, grid: any) {
     var newLocation = exploreInDirection(currentLocation, "West", grid);
     if (newLocation.status === "end") {
       return newLocation.path;
-    } else if (newLocation.status === "Valid") {
+    } else if (newLocation.status === "valid") {
       queue.push(newLocation);
     }
   }
+
   // No valid path found
   return false;
 };
@@ -59,7 +63,7 @@ export const findShortestPath = function(startCoordinates: any, grid: any) {
 // This function will check a location's status
 // (a location is "valid" if it is on the grid, is not an "obstacle",
 // and has not yet been visited by our algorithm)
-// Returns "Valid", "Invalid", "Blocked", or "end"
+// Returns "valid", "invalid", "blocked", or "end"
 var locationStatus = function(location: any, grid: any) {
   var gridSize = grid.length;
   var dft = location.distanceFromTop;
@@ -72,14 +76,16 @@ var locationStatus = function(location: any, grid: any) {
     location.distanceFromTop >= gridSize
   ) {
     // location is not on the grid--return false
-    return "Invalid";
+    return "invalid";
   } else if (grid[dft][dfl] === "end") {
     return "end";
+  } else if (grid[dft][dfl] === "path") {
+    return "path";
   } else if (grid[dft][dfl] !== "Empty") {
     // location is either an obstacle or has been visited
-    return "Blocked";
+    return "blocked";
   } else {
-    return "Valid";
+    return "valid";
   }
 };
 
@@ -91,9 +97,9 @@ var exploreInDirection = function(
   grid: any
 ) {
   var newPath = currentLocation.path.slice();
-  newPath.push(direction);
   var dft = currentLocation.distanceFromTop;
   var dfl = currentLocation.distanceFromLeft;
+  newPath.push([dft, dfl]);
 
   if (direction === "North") {
     dft -= 1;
@@ -114,8 +120,7 @@ var exploreInDirection = function(
 
   newLocation.status = locationStatus(newLocation, grid);
 
-  //If this new location is valid, mark it as 'Visited'
-  if (newLocation.status === "Valid") {
+  if (newLocation.status === "valid") {
     grid[newLocation.distanceFromTop][newLocation.distanceFromLeft] = "Visited";
   }
 

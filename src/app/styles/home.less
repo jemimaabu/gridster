@@ -84,6 +84,7 @@
           background-color: @cell-clear;
         }
 
+
         &[data-status="start"] {
           background-color: @cell-start!important;
           user-select: none;
@@ -91,6 +92,11 @@
 
         &[data-status="end"] {
           background-color: @cell-end!important;
+          user-select: none;
+        }
+
+        &[data-status="path"] {
+          background-color: @cell-path!important;
           user-select: none;
         }
       }

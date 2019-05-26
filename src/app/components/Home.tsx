@@ -63,7 +63,10 @@ export class Home extends React.Component<{}, IGridState> {
 
     gridArray[0][randomFirst] = "start";
     gridArray[columns - 1][randomLast] = "end";
-    console.log(findShortestPath([0, 0], gridArray), gridArray);
+    var validPath = findShortestPath([0,randomFirst], gridArray);
+    for (var path in validPath) {
+      gridArray[validPath[path][0]][validPath[path][1]] = "path";
+    }
     this.setState({ gridArray });
   }
 
