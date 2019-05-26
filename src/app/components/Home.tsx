@@ -87,7 +87,6 @@ export class Home extends React.Component<{}, IGridState> {
   }
 
   handleCellClick(e: any) {
-    var cellId = document.getElementById(e.target.id);
     this.generateGridPath(e.target.dataset.column, e.target.dataset.row);
 
     const gridArray = this.state.gridArray;
@@ -160,7 +159,6 @@ export class Home extends React.Component<{}, IGridState> {
                 maxLength={2}
                 value={rows}
                 onChange={this.handleRowChange}
-                id="rows-input"
               />
             </span>
             <span className="input-container">
@@ -172,7 +170,6 @@ export class Home extends React.Component<{}, IGridState> {
                 maxLength={2}
                 value={columns}
                 onChange={this.handleColumnChange}
-                id="columns-input"
               />
             </span>
             <button
