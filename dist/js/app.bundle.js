@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "90eaf5304350eeea675f";
+/******/ 	var hotCurrentHash = "8f6e56f2b4435f680bf0";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -27639,6 +27639,15 @@ var Home = (function (_super) {
         this.generateGrid();
         this.updateStyle();
     };
+    Home.prototype.handleCellInit = function () {
+        var _a = this.state, rows = _a.rows, columns = _a.columns;
+        var randomFirst = this.getRandomNum(rows);
+        var randomLast = this.getRandomNum(rows);
+        var gridArray = this.state.gridArray.slice();
+        gridArray[0][randomFirst] = "start";
+        gridArray[columns - 1][randomLast] = "end";
+        this.setState({ gridArray: gridArray });
+    };
     Home.prototype.getRandomNum = function (max) {
         return Math.floor(Math.random() * Math.floor(max));
     };
@@ -27659,15 +27668,6 @@ var Home = (function (_super) {
         }
         return value;
     };
-    Home.prototype.handleCellInit = function () {
-        var _a = this.state, rows = _a.rows, columns = _a.columns;
-        var randomFirst = this.getRandomNum(rows);
-        var randomLast = this.getRandomNum(rows);
-        var gridArray = this.state.gridArray.slice();
-        gridArray[0][randomFirst] = "start";
-        gridArray[columns - 1][randomLast] = "end";
-        this.setState({ gridArray: gridArray });
-    };
     Home.prototype.handleCellClick = function (e) {
         this.generateGridPath(e.target.dataset.column, e.target.dataset.row);
         var gridArray = this.state.gridArray;
@@ -27686,7 +27686,7 @@ var Home = (function (_super) {
     };
     Home.prototype.handleFindPath = function (start, gridArray) {
         var validPath = helpers_1.findShortestPath([0, start], gridArray);
-        if (validPath.length > 0) {
+        if (validPath) {
             for (var path in validPath) {
                 gridArray[validPath[path][0]][validPath[path][1]] = "path";
             }

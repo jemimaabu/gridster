@@ -41,6 +41,7 @@ export class Home extends React.Component<{}, IGridState> {
     }
     
     this.setState({ gridArray }, () => this.handleCellInit());
+    this.handleCellClick = this.handleCellClick;
   };
   
   handleCellInit() {
@@ -86,8 +87,8 @@ export class Home extends React.Component<{}, IGridState> {
     return value;
   }
 
-  handleCellClick(e: any) {
-    this.generateGridPath(e.target.dataset.column, e.target.dataset.row);
+  handleCellClick(column: number, row: number) {
+    this.generateGridPath(column, row);
 
     const gridArray = this.state.gridArray;
     const start = gridArray[0].indexOf("start");
@@ -111,6 +112,7 @@ export class Home extends React.Component<{}, IGridState> {
         gridArray[validPath[path][0]][validPath[path][1]] = "path";
       }
       gridArray[validPath[0][0]][validPath[0][1]] = "start";
+      this.handleCellClick = function(){return};
     }
   }
 
@@ -135,7 +137,7 @@ export class Home extends React.Component<{}, IGridState> {
         className="cell"
         key={`${column}-${row}`}
         id={`cell${column}-${row}`}
-        onClick={e => this.handleCellClick(e)}
+        onClick={() => this.handleCellClick(column, row)}
         data-status={cellStatus}
         data-column = {column}
         data-row = {row}
