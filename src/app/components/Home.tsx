@@ -111,10 +111,6 @@ export class Home extends React.Component<{}, IGridState> {
 
   handleFindPath(start: number, gridArray: Array<Array<any>>) {
     var validPath = findShortestPath([0,start], gridArray);
-    if(!validPath) {
-      gridArray[0][gridArray[0].indexOf("visited")] = "empty"
-      gridArray[1][gridArray[1].indexOf("visited")] = "empty"
-    }
     if (validPath) {
       for (var path in validPath) {
         gridArray[validPath[path][0]][validPath[path][1]] = "path";
