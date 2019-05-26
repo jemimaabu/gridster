@@ -42,6 +42,18 @@ export class Home extends React.Component<{}, IGridState> {
     
     this.setState({ gridArray }, () => this.handleCellInit());
   };
+  
+  handleCellInit() {
+    const { rows, columns } = this.state;
+    let randomFirst = this.getRandomNum(rows);
+    let randomLast = this.getRandomNum(rows);
+    let gridArray = [...this.state.gridArray];
+
+    gridArray[0][randomFirst] = "start";
+    gridArray[columns - 1][randomLast] = "end";
+    
+    this.setState({ gridArray });
+  }
 
   updateStyle = () => {
     const styles = {
@@ -74,18 +86,6 @@ export class Home extends React.Component<{}, IGridState> {
     return value;
   }
 
-  handleCellInit() {
-    const { rows, columns } = this.state;
-    let randomFirst = this.getRandomNum(rows);
-    let randomLast = this.getRandomNum(rows);
-    let gridArray = [...this.state.gridArray];
-
-    gridArray[0][randomFirst] = "start";
-    gridArray[columns - 1][randomLast] = "end";
-    
-    this.setState({ gridArray });
-  }
-
   handleCellClick(e: any) {
     this.generateGridPath(e.target.dataset.column, e.target.dataset.row);
 
@@ -106,7 +106,7 @@ export class Home extends React.Component<{}, IGridState> {
 
   handleFindPath(start: number, gridArray: Array<Array<any>>) {
     var validPath = findShortestPath([0,start], gridArray);
-    if (validPath.length > 0 ) {
+    if (validPath) {
       for (var path in validPath) {
         gridArray[validPath[path][0]][validPath[path][1]] = "path";
       }
