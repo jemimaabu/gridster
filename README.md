@@ -1,7 +1,8 @@
 # Gridster
 A grid path game
 
-## Instructions
+## How To Play
+- Play the game at [Gridster](https://gridster-demo.herokuapp.com)
 - Select a path alongside the Start cell (green coloured cell on the left).
 - Select all adjacent paths till you reach the End cell (green coloured cell on the right).
 
