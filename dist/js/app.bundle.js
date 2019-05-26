@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "8f6e56f2b4435f680bf0";
+/******/ 	var hotCurrentHash = "f0804cb5ca845a0296d3";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -1006,7 +1006,7 @@ module.exports = function () {
 
 exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".home-container {\n  width: 50%;\n  margin: 0 auto;\n}\n.home-container header {\n  padding: 1em 0;\n}\n.home-container header img {\n  width: 10em;\n}\n.home-container .controls-container {\n  background-color: #f1f1f1;\n  padding: 1em 2em;\n  display: flex;\n  align-items: flex-end;\n  border-radius: 0.2em;\n}\n.home-container .controls-container .input-container {\n  margin-right: 1em;\n}\n.home-container .controls-container .input-container label {\n  display: block;\n  font-size: 0.75em;\n  margin-bottom: 0.25em;\n  color: #757575;\n  font-family: Arial, Helvetica, sans-serif;\n}\n.home-container .controls-container .input-container input {\n  width: 2em;\n  padding: 0.5em 1em;\n  border: none;\n  border-radius: 0.2em;\n}\n.home-container .controls-container .generate-btn {\n  height: fit-content;\n  padding: 0.5em 1em;\n  color: #fff;\n  background-color: #4A90E2;\n  transition: 0.5s;\n  border: none;\n  border-radius: 0.2em;\n}\n.home-container .controls-container .generate-btn:hover {\n  background-color: #76B5FF;\n}\n.home-container .controls-container .generate-btn:active {\n  background-color: #235896;\n}\n.home-container .grid-container {\n  display: grid;\n  min-height: 75vh;\n  width: 100%;\n  margin: 1em 0;\n}\n.home-container .grid-container .column {\n  display: grid;\n}\n.home-container .grid-container .column .cell {\n  border: 1px solid #DBDBDB;\n  width: 100%;\n  height: 100%;\n}\n.home-container .grid-container .column .cell:hover {\n  background-color: #F8F8F8;\n}\n.home-container .grid-container .column .cell:active {\n  background-color: #E2E2E2;\n}\n.home-container .grid-container .column .cell[data-status=\"blocked\"] {\n  background-color: #F1F1F1;\n}\n.home-container .grid-container .column .cell[data-status=\"empty\"],\n.home-container .grid-container .column .cell[data-status=\"visited\"] {\n  background-color: #FFFFFF;\n}\n.home-container .grid-container .column .cell[data-status=\"start\"] {\n  background-color: #7ED321 !important;\n  user-select: none;\n}\n.home-container .grid-container .column .cell[data-status=\"end\"] {\n  background-color: #639530 !important;\n  user-select: none;\n}\n.home-container .grid-container .column .cell[data-status=\"path\"] {\n  background-color: #F5A623 !important;\n  user-select: none;\n}\n@media (max-width: 800px) {\n  .home-container {\n    width: 75%;\n  }\n}\n@media (max-width: 400px) {\n  .home-container {\n    width: 90%;\n  }\n}\n", ""]);
+exports.push([module.i, ".home-container {\n  width: 50%;\n  margin: 0 auto;\n}\n.home-container header {\n  padding: 1em 0;\n}\n.home-container header img {\n  width: 10em;\n}\n.home-container .controls-container {\n  background-color: #f1f1f1;\n  padding: 1em 2em;\n  display: flex;\n  align-items: flex-end;\n  border-radius: 0.2em;\n}\n.home-container .controls-container .input-container {\n  margin-right: 1em;\n}\n.home-container .controls-container .input-container label {\n  display: block;\n  font-size: 0.75em;\n  margin-bottom: 0.25em;\n  color: #757575;\n  font-family: Arial, Helvetica, sans-serif;\n}\n.home-container .controls-container .input-container input {\n  width: 2em;\n  padding: 0.5em 1em;\n  border: none;\n  border-radius: 0.2em;\n}\n.home-container .controls-container .generate-btn {\n  height: fit-content;\n  padding: 0.5em 1em;\n  color: #fff;\n  background-color: #4A90E2;\n  transition: 0.5s;\n  border: none;\n  border-radius: 0.2em;\n}\n.home-container .controls-container .generate-btn:hover {\n  background-color: #76B5FF;\n}\n.home-container .controls-container .generate-btn:active {\n  background-color: #235896;\n}\n.home-container .grid-container {\n  display: grid;\n  min-height: 75vh;\n  width: 100%;\n  margin: 1em 0;\n}\n.home-container .grid-container .column {\n  display: grid;\n}\n.home-container .grid-container .column .cell {\n  border: 1px solid #DBDBDB;\n  width: 100%;\n  height: 100%;\n}\n.home-container .grid-container .column .cell:hover {\n  background-color: #F8F8F8;\n}\n.home-container .grid-container .column .cell:active {\n  background-color: #E2E2E2;\n}\n.home-container .grid-container .column .cell[data-status=\"blocked\"] {\n  background-color: #F1F1F1;\n}\n.home-container .grid-container .column .cell[data-status=\"empty\"],\n.home-container .grid-container .column .cell[data-status=\"visited\"] {\n  background-color: #FFFFFF;\n}\n.home-container .grid-container .column .cell[data-status=\"start\"] {\n  background-color: #7ED321;\n  user-select: none;\n}\n.home-container .grid-container .column .cell[data-status=\"end\"] {\n  background-color: #639530;\n  user-select: none;\n}\n.home-container .grid-container .column .cell[data-status=\"path\"] {\n  background-color: #F5A623;\n  user-select: none;\n}\n@media (max-width: 800px) {\n  .home-container {\n    width: 75%;\n  }\n}\n@media (max-width: 400px) {\n  .home-container {\n    width: 90%;\n  }\n}\n", ""]);
 
 
 
@@ -27613,6 +27613,7 @@ var Home = (function (_super) {
                 }
             }
             _this.setState({ gridArray: gridArray }, function () { return _this.handleCellInit(); });
+            _this.handleCellClick = _this.handleCellClick;
         };
         _this.updateStyle = function () {
             var styles = {
@@ -27668,8 +27669,8 @@ var Home = (function (_super) {
         }
         return value;
     };
-    Home.prototype.handleCellClick = function (e) {
-        this.generateGridPath(e.target.dataset.column, e.target.dataset.row);
+    Home.prototype.handleCellClick = function (column, row) {
+        this.generateGridPath(column, row);
         var gridArray = this.state.gridArray;
         var start = gridArray[0].indexOf("start");
         this.handleFindPath(start, gridArray);
@@ -27699,7 +27700,7 @@ var Home = (function (_super) {
     };
     Home.prototype.renderCell = function (cellStatus, column, row) {
         var _this = this;
-        return (React.createElement("div", { className: "cell", key: column + "-" + row, id: "cell" + column + "-" + row, onClick: function (e) { return _this.handleCellClick(e); }, "data-status": cellStatus, "data-column": column, "data-row": row }));
+        return (React.createElement("div", { className: "cell", key: column + "-" + row, id: "cell" + column + "-" + row, onClick: function () { return _this.handleCellClick(column, row); }, "data-status": cellStatus, "data-column": column, "data-row": row }));
     };
     Home.prototype.render = function () {
         var _this = this;
