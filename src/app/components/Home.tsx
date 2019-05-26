@@ -27,6 +27,11 @@ export class Home extends React.Component<{}, IGridState> {
   }
 
   generateGrid = () => {
+    if (this.state.columns == 0 || this.state.rows == 0) {
+      alert("Input cannot be zero");
+      return;
+    }
+
     let gridArray = [];
 
     for (var i = 0; i < this.state.columns; i++) {
@@ -78,11 +83,14 @@ export class Home extends React.Component<{}, IGridState> {
 
     gridArray[0][randomFirst] = "start";
     gridArray[columns - 1][randomLast] = "end";
-    var validPath = findShortestPath([0,randomFirst], gridArray);
+    this.setState({ gridArray });
+  }
+
+  handleFindPath(start: number, gridArray: Array<Array<string>>) {
+    var validPath = findShortestPath([0,start], gridArray);
     for (var path in validPath) {
       gridArray[validPath[path][0]][validPath[path][1]] = "path";
     }
-    this.setState({ gridArray });
   }
 
   handleCellClick(e: any) {
