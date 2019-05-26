@@ -104,7 +104,7 @@ export class Home extends React.Component<{}, IGridState> {
     if (gridArray[column][row]=="blocked") {
       gridArray[column][row] = "empty"
     } else if (gridArray[column][row]=="empty" || gridArray[column][row]=="visited") {
-      gridArray[column][row] = "empty"
+      gridArray[column][row] = "blocked"
     }
     this.setState({gridArray}); 
   }
