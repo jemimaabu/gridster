@@ -55,18 +55,16 @@ export class Home extends React.Component<{}, IGridState> {
     return Math.floor(Math.random() * Math.floor(max));
   }
 
-  minmax(value: any, min: number, max: number) {
-    if (value.indexOf('.') > -1) {
-       if (value === ".") return;
-       return value.split('.')[0];
-    }
+  getMinmaxValue(value: any, min: number, max: number) {
+    if (isNaN(value)) return min;
     if (value.length < 2) return value; 
+
     const parsedInput = parseInt(value);
     if (parsedInput >= min && parsedInput <= max) {
       return value;
     } else if (parsedInput < min) {
       return min;
-    } else if(parsedInput > max) {
+    } else if (parsedInput > max) {
       return max;
     }
     return value;
@@ -95,12 +93,12 @@ export class Home extends React.Component<{}, IGridState> {
   }
 
   handleColumnChange = (e: any) => {
-    const columns = this.minmax(e.target.value, 1, 20);
+    const columns = this.getMinmaxValue(e.target.value, 1, 20);
     this.setState({ columns });
   };
 
   handleRowChange = (e: any) => {
-    const rows = this.minmax(e.target.value, 1, 20);
+    const rows = this.getMinmaxValue(e.target.value, 1, 20);
     this.setState({ rows });
   };
 
