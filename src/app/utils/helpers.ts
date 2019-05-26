@@ -81,7 +81,7 @@ var locationStatus = function(location: any, grid: any) {
     return "end";
   } else if (grid[dft][dfl] === "path") {
     return "path";
-  } else if (grid[dft][dfl] !== "Empty") {
+  } else if (grid[dft][dfl] !== "empty") {
     // location is either an obstacle or has been visited
     return "blocked";
   } else {
@@ -121,7 +121,7 @@ var exploreInDirection = function(
   newLocation.status = locationStatus(newLocation, grid);
 
   if (newLocation.status === "valid") {
-    grid[newLocation.distanceFromTop][newLocation.distanceFromLeft] = "Visited";
+    grid[newLocation.distanceFromTop][newLocation.distanceFromLeft] = "visited";
   }
 
   return newLocation;

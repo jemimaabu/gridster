@@ -1,6 +1,5 @@
 import * as React from "react";
 import "../styles/home.less";
-import * as $ from "jquery";
 import { findShortestPath } from "../utils/helpers";
 
 // @ts-ignore
@@ -17,7 +16,7 @@ export class Home extends React.Component<{}, IGridState> {
   state = {
     rows: 10,
     columns: 10,
-    gridArray: [[""]],
+    gridArray: Array<Array<string>>(),
     styles: { rows: {}, columns: {} }
   };
 
@@ -37,10 +36,10 @@ export class Home extends React.Component<{}, IGridState> {
     for (var i = 0; i < this.state.columns; i++) {
       gridArray.push([]);
       for (var j = 0; j < this.state.rows; j++) {
-        gridArray[i].push("Empty");
+        gridArray[i].push("blocked");
       }
     }
-
+    
     this.setState({ gridArray }, () => this.handleCellInit());
   };
 
@@ -83,21 +82,37 @@ export class Home extends React.Component<{}, IGridState> {
 
     gridArray[0][randomFirst] = "start";
     gridArray[columns - 1][randomLast] = "end";
+    
     this.setState({ gridArray });
-  }
-
-  handleFindPath(start: number, gridArray: Array<Array<string>>) {
-    var validPath = findShortestPath([0,start], gridArray);
-    for (var path in validPath) {
-      gridArray[validPath[path][0]][validPath[path][1]] = "path";
-    }
   }
 
   handleCellClick(e: any) {
     var cellId = document.getElementById(e.target.id);
-    cellId.classList.contains("selected")
-      ? cellId.classList.remove("selected")
-      : cellId.classList.add("selected");
+    this.generateGridPath(e.target.dataset.column, e.target.dataset.row);
+
+    const gridArray = this.state.gridArray;
+    const start = gridArray[0].indexOf("start");
+    this.handleFindPath(start, gridArray);
+  }
+
+  generateGridPath(column: number, row: number) {
+    let gridArray = [...this.state.gridArray];
+    if (gridArray[column][row]=="blocked") {
+      gridArray[column][row] = "empty"
+    } else if (gridArray[column][row]=="empty" || gridArray[column][row]=="visited") {
+      gridArray[column][row] = "blocked"
+    }
+    this.setState({gridArray}); 
+  }
+
+  handleFindPath(start: number, gridArray: Array<Array<any>>) {
+    var validPath = findShortestPath([0,start], gridArray);
+    if (validPath.length > 0 ) {
+      for (var path in validPath) {
+        gridArray[validPath[path][0]][validPath[path][1]] = "path";
+      }
+      gridArray[validPath[0][0]][validPath[0][1]] = "start";
+    }
   }
 
   handleColumnChange = (e: any) => {
@@ -110,24 +125,21 @@ export class Home extends React.Component<{}, IGridState> {
     this.setState({ rows });
   };
 
-  resetTable() {
-    $(".cell").removeClass("selected");
-  }
-
   handleGenerateGrid() {
     this.generateGrid();
-    this.resetTable();
     this.updateStyle();
   }
 
-  renderCell(cellContent: string, index: any) {
+  renderCell(cellStatus: string, column: number, row: number) {
     return (
       <div
         className="cell"
-        key={index}
-        id={`cell${index}`}
+        key={`${column}-${row}`}
+        id={`cell${column}-${row}`}
         onClick={e => this.handleCellClick(e)}
-        data-status={cellContent}
+        data-status={cellStatus}
+        data-column = {column}
+        data-row = {row}
       />
     );
   }
@@ -178,7 +190,7 @@ export class Home extends React.Component<{}, IGridState> {
                 id={`column-${i}`}
                 style={styles.rows}
               >
-                {x.map((y, j) => this.renderCell(y, i + "-" + j))}
+                {x.map((y, j) => this.renderCell(y, i, j))}
               </div>
             ))}
           </div>

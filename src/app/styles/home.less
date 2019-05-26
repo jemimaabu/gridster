@@ -67,7 +67,6 @@
       display: grid;
 
       .cell {
-        background-color: @cell-default;
         border: 1px solid @cell-border;
         width: 100%;
         height: 100%;
@@ -80,10 +79,14 @@
           background-color: @cell-active;
         }
 
-        &.selected {
-          background-color: @cell-clear;
+        &[data-status="blocked"] {
+          background-color: @cell-default;
         }
 
+        &[data-status="empty"],
+        &[data-status="visited"] {
+          background-color: @cell-clear;
+        }
 
         &[data-status="start"] {
           background-color: @cell-start!important;
