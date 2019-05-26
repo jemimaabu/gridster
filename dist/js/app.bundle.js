@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "632b0d08873b24744c73";
+/******/ 	var hotCurrentHash = "f54713817f274f239e46";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -1006,7 +1006,7 @@ module.exports = function () {
 
 exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".home-container {\n  width: 50%;\n  margin: 0 auto;\n}\n.home-container header {\n  padding: 1em 0;\n}\n.home-container header img {\n  width: 10em;\n}\n.home-container .controls-container {\n  background-color: #F1F1F1;\n  padding: 1em 2em;\n  display: flex;\n  align-items: flex-end;\n  border-radius: 0.2em;\n}\n.home-container .controls-container .input-container {\n  margin-right: 1em;\n}\n.home-container .controls-container .input-container label {\n  display: block;\n  font-size: 0.75em;\n  margin-bottom: 0.25em;\n  color: #757575;\n  font-family: Arial, Helvetica, sans-serif;\n}\n.home-container .controls-container .input-container input {\n  width: 2em;\n  padding: 0.5em 1em;\n  border: none;\n  border-radius: 0.2em;\n}\n.home-container .controls-container .generate-btn {\n  height: fit-content;\n  padding: 0.5em 1em;\n  color: #fff;\n  background-color: #4A90E2;\n  transition: 0.5s;\n  border: none;\n  border-radius: 0.2em;\n}\n.home-container .controls-container .generate-btn:hover {\n  background-color: #76B5FF;\n}\n.home-container .controls-container .generate-btn:active {\n  background-color: #235896;\n}\n.home-container .grid-container {\n  display: grid;\n  min-height: 75vh;\n  width: 100%;\n  margin: 1em 0;\n}\n.home-container .grid-container .column {\n  display: grid;\n}\n.home-container .grid-container .column .cell {\n  background-color: #F1F1F1;\n  border: 1px solid #DBDBDB;\n  width: 100%;\n  height: 100%;\n}\n.home-container .grid-container .column .cell:hover {\n  background-color: #F8F8F8;\n}\n.home-container .grid-container .column .cell:active {\n  background-color: #E2E2E2;\n}\n.home-container .grid-container .column .cell.selected {\n  background-color: #FFFFFF;\n}\n.home-container .grid-container .column .cell.start {\n  background-color: #7ED321 !important;\n  user-select: none;\n}\n.home-container .grid-container .column .cell.end {\n  background-color: #639530 !important;\n  user-select: none;\n}\n@media (max-width: 800px) {\n  .home-container {\n    width: 75%;\n  }\n}\n@media (max-width: 400px) {\n  .home-container {\n    width: 90%;\n  }\n}\n", ""]);
+exports.push([module.i, ".home-container {\n  width: 50%;\n  margin: 0 auto;\n}\n.home-container header {\n  padding: 1em 0;\n}\n.home-container header img {\n  width: 10em;\n}\n.home-container .controls-container {\n  background-color: #f1f1f1;\n  padding: 1em 2em;\n  display: flex;\n  align-items: flex-end;\n  border-radius: 0.2em;\n}\n.home-container .controls-container .input-container {\n  margin-right: 1em;\n}\n.home-container .controls-container .input-container label {\n  display: block;\n  font-size: 0.75em;\n  margin-bottom: 0.25em;\n  color: #757575;\n  font-family: Arial, Helvetica, sans-serif;\n}\n.home-container .controls-container .input-container input {\n  width: 2em;\n  padding: 0.5em 1em;\n  border: none;\n  border-radius: 0.2em;\n}\n.home-container .controls-container .generate-btn {\n  height: fit-content;\n  padding: 0.5em 1em;\n  color: #fff;\n  background-color: #4A90E2;\n  transition: 0.5s;\n  border: none;\n  border-radius: 0.2em;\n}\n.home-container .controls-container .generate-btn:hover {\n  background-color: #76B5FF;\n}\n.home-container .controls-container .generate-btn:active {\n  background-color: #235896;\n}\n.home-container .grid-container {\n  display: grid;\n  min-height: 75vh;\n  width: 100%;\n  margin: 1em 0;\n}\n.home-container .grid-container .column {\n  display: grid;\n}\n.home-container .grid-container .column .cell {\n  background-color: #F1F1F1;\n  border: 1px solid #DBDBDB;\n  width: 100%;\n  height: 100%;\n}\n.home-container .grid-container .column .cell:hover {\n  background-color: #F8F8F8;\n}\n.home-container .grid-container .column .cell:active {\n  background-color: #E2E2E2;\n}\n.home-container .grid-container .column .cell.selected {\n  background-color: #FFFFFF;\n}\n.home-container .grid-container .column .cell[data-status=\"start\"] {\n  background-color: #7ED321 !important;\n  user-select: none;\n}\n.home-container .grid-container .column .cell[data-status=\"end\"] {\n  background-color: #639530 !important;\n  user-select: none;\n}\n@media (max-width: 800px) {\n  .home-container {\n    width: 75%;\n  }\n}\n@media (max-width: 400px) {\n  .home-container {\n    width: 90%;\n  }\n}\n", ""]);
 
 
 
@@ -38199,85 +38199,87 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 __webpack_require__(/*! ../styles/home.less */ "./src/app/styles/home.less");
 var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+var helpers_1 = __webpack_require__(/*! ../utils/helpers */ "./src/app/utils/helpers.ts");
 var Logo = __webpack_require__(/*! ../images/logo.png */ "./src/app/images/logo.png");
 var Home = (function (_super) {
     __extends(Home, _super);
-    function Home(props) {
-        var _this = _super.call(this, props) || this;
+    function Home() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.state = {
             rows: 10,
             columns: 10,
-            rowInput: 10,
-            columnInput: 10
+            gridArray: [[""]],
+            styles: { rows: {}, columns: {} }
+        };
+        _this.generateGrid = function () {
+            var gridArray = [];
+            for (var i = 0; i < _this.state.columns; i++) {
+                gridArray.push([]);
+                for (var j = 0; j < _this.state.rows; j++) {
+                    gridArray[i].push("Empty");
+                }
+            }
+            _this.setState({ gridArray: gridArray }, function () { return _this.handleCellInit(); });
+        };
+        _this.updateStyle = function () {
+            var styles = {
+                rows: {
+                    gridTemplateRows: "repeat(" + _this.state.rows + ", 1fr)"
+                },
+                columns: {
+                    gridTemplateColumns: "repeat(" + _this.state.columns + ", 1fr)"
+                }
+            };
+            _this.setState({ styles: styles });
+        };
+        _this.handleColumnChange = function (e) {
+            var columns = e.target.value;
+            _this.setState({ columns: columns });
+        };
+        _this.handleRowChange = function (e) {
+            var rows = e.target.value;
+            _this.setState({ rows: rows });
         };
         return _this;
     }
     Home.prototype.componentDidMount = function () {
-        this.handleCellInit();
-    };
-    Home.prototype.handleCellClick = function (e) {
-        var cellId = document.getElementById(e.target.id);
-        cellId.classList.contains("selected") ? cellId.classList.remove("selected") : cellId.classList.add("selected");
-    };
-    Home.prototype.handleColumnChange = function (e) {
-        var columnInput = e.target.value;
-        this.setState({
-            columnInput: columnInput
-        });
-    };
-    Home.prototype.handleRowChange = function (e) {
-        var rowInput = e.target.value;
-        this.setState({
-            rowInput: rowInput
-        });
-    };
-    Home.prototype.handleGenerateGrid = function () {
-        var rows = this.state.rowInput;
-        var columns = this.state.columnInput;
-        this.setState({
-            rows: rows,
-            columns: columns
-        });
-        this.resetTable();
-        this.handleCellInit();
+        this.generateGrid();
+        this.updateStyle();
     };
     Home.prototype.getRandomNum = function (max) {
         return Math.floor(Math.random() * Math.floor(max));
     };
     Home.prototype.handleCellInit = function () {
-        var colLength = this.state.columnInput;
-        var rowLength = this.state.rowInput;
-        var randomFirst = this.getRandomNum(rowLength);
-        var randomLast = this.getRandomNum(rowLength);
-        $("#cell-0" + randomFirst).addClass("start");
-        $("#cell-" + (colLength - 1) + randomLast).addClass("end");
+        var _a = this.state, rows = _a.rows, columns = _a.columns;
+        var randomFirst = this.getRandomNum(rows);
+        var randomLast = this.getRandomNum(rows);
+        var gridArray = this.state.gridArray.slice();
+        gridArray[0][randomFirst] = "start";
+        gridArray[columns - 1][randomLast] = "end";
+        console.log(helpers_1.findShortestPath([0, 0], gridArray), gridArray);
+        this.setState({ gridArray: gridArray });
+    };
+    Home.prototype.handleCellClick = function (e) {
+        var cellId = document.getElementById(e.target.id);
+        cellId.classList.contains("selected")
+            ? cellId.classList.remove("selected")
+            : cellId.classList.add("selected");
     };
     Home.prototype.resetTable = function () {
-        $(".cell").removeClass("start end selected");
+        $(".cell").removeClass("selected");
+    };
+    Home.prototype.handleGenerateGrid = function () {
+        this.generateGrid();
+        this.resetTable();
+        this.updateStyle();
     };
     Home.prototype.renderCell = function (cellContent, index) {
         var _this = this;
-        return (React.createElement("div", { className: "cell", key: index, id: "cell-" + index, onClick: function (e) { return _this.handleCellClick(e); } }, cellContent));
+        return (React.createElement("div", { className: "cell", key: index, id: "cell" + index, onClick: function (e) { return _this.handleCellClick(e); }, "data-status": cellContent }));
     };
     Home.prototype.render = function () {
         var _this = this;
-        var gridArray = [];
-        var rows = this.state.rows;
-        var columns = this.state.columns;
-        for (var i = 0; i < columns; i++) {
-            gridArray.push([]);
-            for (var j = 0; j < rows; j++) {
-                gridArray[i].push("");
-            }
-        }
-        var styles = {
-            rows: {
-                gridTemplateRows: "repeat(" + this.state.rows + ", 1fr)"
-            },
-            columns: {
-                gridTemplateColumns: "repeat(" + this.state.columns + ", 1fr)"
-            }
-        };
+        var _a = this.state, rows = _a.rows, columns = _a.columns, gridArray = _a.gridArray, styles = _a.styles;
         return (React.createElement("div", { className: "home-container" },
             React.createElement("header", null,
                 React.createElement("img", { src: Logo, alt: "Gridster logo" })),
@@ -38285,16 +38287,14 @@ var Home = (function (_super) {
                 React.createElement("div", { className: "controls-container" },
                     React.createElement("span", { className: "input-container" },
                         React.createElement("label", null, "Rows"),
-                        React.createElement("input", { value: this.state.rowInput, maxLength: 2, onChange: function (e) { return _this.handleRowChange(e); }, id: "rows-input" })),
+                        React.createElement("input", { maxLength: 2, value: rows, onChange: this.handleRowChange, id: "rows-input" })),
                     React.createElement("span", { className: "input-container" },
                         React.createElement("label", null, "x")),
                     React.createElement("span", { className: "input-container" },
                         React.createElement("label", null, "Columns"),
-                        React.createElement("input", { value: this.state.columnInput, maxLength: 2, onChange: function (e) { return _this.handleColumnChange(e); }, id: "columns-input" })),
+                        React.createElement("input", { maxLength: 2, value: columns, onChange: this.handleColumnChange, id: "columns-input" })),
                     React.createElement("button", { className: "generate-btn", onClick: function () { return _this.handleGenerateGrid(); } }, "Generate")),
-                React.createElement("div", { className: "grid-container", style: styles.columns }, gridArray.map(function (x, i) { return (React.createElement("div", { className: "column", key: i, id: "column-" + i, style: styles.rows }, x.map(function (y, j) {
-                    return _this.renderCell(y, i + "" + j);
-                }))); })))));
+                React.createElement("div", { className: "grid-container", style: styles.columns }, gridArray.map(function (x, i) { return (React.createElement("div", { className: "column", key: i, id: "column-" + i, style: styles.rows }, x.map(function (y, j) { return _this.renderCell(y, i + "-" + j); }))); })))));
     };
     return Home;
 }(React.Component));
@@ -38366,6 +38366,112 @@ if(true) {
 
 	module.hot.dispose(function() { update(); });
 }
+
+/***/ }),
+
+/***/ "./src/app/utils/helpers.ts":
+/*!**********************************!*\
+  !*** ./src/app/utils/helpers.ts ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.findShortestPath = function (startCoordinates, grid) {
+    var distanceFromTop = startCoordinates[0];
+    var distanceFromLeft = startCoordinates[1];
+    var location = {
+        distanceFromTop: distanceFromTop,
+        distanceFromLeft: distanceFromLeft,
+        path: Array(),
+        status: "start"
+    };
+    var queue = [location];
+    while (queue.length > 0) {
+        var currentLocation = queue.shift();
+        var newLocation = exploreInDirection(currentLocation, "North", grid);
+        if (newLocation.status === "end") {
+            return newLocation.path;
+        }
+        else if (newLocation.status === "Valid") {
+            queue.push(newLocation);
+        }
+        var newLocation = exploreInDirection(currentLocation, "East", grid);
+        if (newLocation.status === "end") {
+            return newLocation.path;
+        }
+        else if (newLocation.status === "Valid") {
+            queue.push(newLocation);
+        }
+        var newLocation = exploreInDirection(currentLocation, "South", grid);
+        if (newLocation.status === "end") {
+            return newLocation.path;
+        }
+        else if (newLocation.status === "Valid") {
+            queue.push(newLocation);
+        }
+        var newLocation = exploreInDirection(currentLocation, "West", grid);
+        if (newLocation.status === "end") {
+            return newLocation.path;
+        }
+        else if (newLocation.status === "Valid") {
+            queue.push(newLocation);
+        }
+    }
+    return false;
+};
+var locationStatus = function (location, grid) {
+    var gridSize = grid.length;
+    var dft = location.distanceFromTop;
+    var dfl = location.distanceFromLeft;
+    if (location.distanceFromLeft < 0 ||
+        location.distanceFromLeft >= gridSize ||
+        location.distanceFromTop < 0 ||
+        location.distanceFromTop >= gridSize) {
+        return "Invalid";
+    }
+    else if (grid[dft][dfl] === "end") {
+        return "end";
+    }
+    else if (grid[dft][dfl] !== "Empty") {
+        return "Blocked";
+    }
+    else {
+        return "Valid";
+    }
+};
+var exploreInDirection = function (currentLocation, direction, grid) {
+    var newPath = currentLocation.path.slice();
+    newPath.push(direction);
+    var dft = currentLocation.distanceFromTop;
+    var dfl = currentLocation.distanceFromLeft;
+    if (direction === "North") {
+        dft -= 1;
+    }
+    else if (direction === "East") {
+        dfl += 1;
+    }
+    else if (direction === "South") {
+        dft += 1;
+    }
+    else if (direction === "West") {
+        dfl -= 1;
+    }
+    var newLocation = {
+        distanceFromTop: dft,
+        distanceFromLeft: dfl,
+        path: newPath,
+        status: "Unknown"
+    };
+    newLocation.status = locationStatus(newLocation, grid);
+    if (newLocation.status === "Valid") {
+        grid[newLocation.distanceFromTop][newLocation.distanceFromLeft] = "Visited";
+    }
+    return newLocation;
+};
+
 
 /***/ }),
 
