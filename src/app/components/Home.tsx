@@ -101,7 +101,6 @@ export class Home extends React.Component<{}, IGridState> {
 
   generateGridPath(column: number, row: number) {
     let gridArray = [...this.state.gridArray];
-    console.log(gridArray);
     if (gridArray[column][row]=="blocked") {
       gridArray[column][row] = "empty"
     } else if (gridArray[column][row]=="empty" || gridArray[column][row]=="visited") {
