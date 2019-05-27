@@ -95,6 +95,7 @@ export class Home extends React.Component<{}, IGridState> {
     
     for(var grid in gridArray) {
       gridArray[grid] = gridArray[grid].map(x => x.replace("visited","empty"));
+      gridArray[grid] = gridArray[grid].map(x => x.replace("path","empty"));
     }
     var validPath = findShortestPath([0,start], gridArray);
     if (validPath) {
