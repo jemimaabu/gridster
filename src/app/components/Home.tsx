@@ -92,11 +92,18 @@ export class Home extends React.Component<{}, IGridState> {
 
     const gridArray = this.state.gridArray;
     const start = gridArray[0].indexOf("start");
-    const endRow = gridArray[gridArray.length-1].indexOf("end");
-    const endColumn = gridArray.length-1;
-    if(row == endRow-1 && column == endColumn || row == endRow && column == endColumn-1 || row == endRow+1 && column == endColumn ) {
-      this.handleFindPath(start, gridArray);
+    
+    for(var grid in gridArray) {
+      gridArray[grid] = gridArray[grid].map(x => x.replace("visited","empty"));
     }
+    var validPath = findShortestPath([0,start], gridArray);
+    if (validPath) {
+      for (var path in validPath) {
+        gridArray[validPath[path][0]][validPath[path][1]] = "path";
+      }
+      gridArray[validPath[0][0]][validPath[0][1]] = "start";
+    }
+    this.setState({gridArray});
   }
 
   generateGridPath(column: number, row: number) {
@@ -107,16 +114,6 @@ export class Home extends React.Component<{}, IGridState> {
       gridArray[column][row] = "blocked"
     }
     this.setState({gridArray}); 
-  }
-
-  handleFindPath(start: number, gridArray: Array<Array<any>>) {
-    var validPath = findShortestPath([0,start], gridArray);
-    if (validPath) {
-      for (var path in validPath) {
-        gridArray[validPath[path][0]][validPath[path][1]] = "path";
-      }
-      gridArray[validPath[0][0]][validPath[0][1]] = "start";
-    }
   }
 
   handleColumnChange = (e: any) => {

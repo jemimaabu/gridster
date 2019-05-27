@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "f0804cb5ca845a0296d3";
+/******/ 	var hotCurrentHash = "b17b8cf944b0e582891a";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -27673,7 +27673,11 @@ var Home = (function (_super) {
         this.generateGridPath(column, row);
         var gridArray = this.state.gridArray;
         var start = gridArray[0].indexOf("start");
-        this.handleFindPath(start, gridArray);
+        var endRow = gridArray[gridArray.length - 1].indexOf("end");
+        var endColumn = gridArray.length - 1;
+        if (row == endRow - 1 && column == endColumn || row == endRow && column == endColumn - 1 || row == endRow + 1 && column == endColumn) {
+            this.handleFindPath(start, gridArray);
+        }
     };
     Home.prototype.generateGridPath = function (column, row) {
         var gridArray = this.state.gridArray.slice();
@@ -27687,6 +27691,12 @@ var Home = (function (_super) {
     };
     Home.prototype.handleFindPath = function (start, gridArray) {
         var validPath = helpers_1.findShortestPath([0, start], gridArray);
+        if (!validPath) {
+            for (var grid in gridArray) {
+                gridArray[grid] = gridArray[grid].map(function (x) { return x.replace("visited", "empty"); });
+            }
+            helpers_1.findShortestPath([0, start], gridArray);
+        }
         if (validPath) {
             for (var path in validPath) {
                 gridArray[validPath[path][0]][validPath[path][1]] = "path";
